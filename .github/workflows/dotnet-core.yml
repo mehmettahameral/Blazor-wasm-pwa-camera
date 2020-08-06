@@ -1,4 +1,4 @@
-name: Blazor wasm pwa camera
+name: blazor-wasm-pwa-camera-ci-cd
 
 on:
   push:
@@ -31,7 +31,7 @@ jobs:
         id: netlify
         uses: netlify/actions/cli@master
         with:
-          args: deploy --json --prod BlazorWasmPwaCamera/bin/Release/netstandard2.1/publish/wwwroot
+          args: deploy BlazorWasmPwaCamera/bin/Release/netstandard2.1/publish/wwwroot --prod
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
