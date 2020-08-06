@@ -19,13 +19,16 @@ jobs:
         dotnet-version: 3.1.301
     - name: Install dependencies
       run: dotnet restore
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
+    - name: Publish Blazor webassembly using dotnet 
+#create Blazor WebAssembly dist output folder in the project directory
+      run: dotnet publish -c Release --no-build -o ./
     - name: Publish generated Blazor webassembly to Netlify
       uses: netlify/actions/cli@master #uses Netlify Cli actions
       env: # these environment variables are added in github secrets
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       with:
-          args: deploy --dir=**/bin/Release/netstandard2.1/wwwroot --prod #push dist folder to Netlify
+          args: deploy --dir=BlazorWasmPwaCamera/dist --prod #push dist folder to Netlify
           secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]' 
