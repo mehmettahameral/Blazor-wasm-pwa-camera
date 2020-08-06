@@ -1,4 +1,4 @@
-name: Blazor-wasm-pwa-camera .NET Core
+name: BlazorOnNetlify
 
 on:
   push:
@@ -8,20 +8,17 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v1
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.301
-    - name: Install dependencies
-      run: dotnet restore
+        dotnet-version: 3.1.100 #Blazor WebAssembly requires 3.1.100
     - name: Build with dotnet
       run: dotnet build --configuration Release
-    - name: Publish Blazor webassembly using dotnet #create Blazor WebAssembly dist output folder in the project directory
+    - name: Publish Blazor webassembly using dotnet 
+#create Blazor WebAssembly dist output folder in the project directory
       run: dotnet publish -c Release --no-build -o ./
     - name: Publish generated Blazor webassembly to Netlify
       uses: netlify/actions/cli@master #uses Netlify Cli actions
@@ -29,5 +26,5 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       with:
-          args: deploy --dir=/home/runner/work/Blazor-wasm-pwa-camera/Blazor-wasm-pwa-camera/ --prod #push dist folder to Netlify
+          args: deploy --dir=BlazorOnNetlify/dist --prod #push dist folder to Netlify
           secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]' 
