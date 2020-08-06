@@ -21,8 +21,7 @@ jobs:
       run: dotnet restore
     - name: Build with dotnet
       run: dotnet build --configuration Release
-    - name: Publish Blazor webassembly using dotnet 
-#create Blazor WebAssembly dist output folder in the project directory
+    - name: Publish Blazor webassembly using dotnet #create Blazor WebAssembly dist output folder in the project directory
       run: dotnet publish -c Release --no-build -o ./
     - name: Publish generated Blazor webassembly to Netlify
       uses: netlify/actions/cli@master #uses Netlify Cli actions
