@@ -27,5 +27,5 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       with:
-          args: deploy --dir=BlazorWasmPwaCamera/dist --prod #push dist folder to Netlify
+          args: deploy --dir=/home/runner/work/Blazor-wasm-pwa-camera/Blazor-wasm-pwa-camera/BlazorWasmPwaCamera/bin/Release/netstandard2.1/wwwroot --prod #push dist folder to Netlify
           secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]' 
