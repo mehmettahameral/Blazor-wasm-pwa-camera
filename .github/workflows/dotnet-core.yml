@@ -1,4 +1,4 @@
-name: .NET Core
+name: Blazor-wasm-pwa-camera .NET Core
 
 on:
   push:
@@ -27,5 +27,5 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       with:
-          args: deploy --dir=BlazorOnNetlify/dist --prod #push dist folder to Netlify
+          args: deploy --dir=BlazorWasmPwaCamera/dist --prod #push dist folder to Netlify
           secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]' 
